@@ -94,13 +94,57 @@ git add .github/workflows/ci.yml
 git commit -m "ci: add GitHub Actions workflow from scratch"
 git push origin main
 ```
-## Baby step 7: Verify in GitHub Actions UI
-1. Open `https://github.com/Swap2204/CI_CD_Demo`
-2. Click **Actions**
-3. Click latest **Node CI** run
-4. Open the `test` job
-5. Confirm all steps are green
-If red, click failed step and read error logs.
+## Baby step 7: See GitHub Actions run automatically (GUI walkthrough)
+
+**What happens after you push:**
+GitHub automatically detects `.github/workflows/ci.yml` and starts a workflow run.
+
+**How to watch it on GitHub (Click-by-Click):**
+
+1. **Open your repository on GitHub**
+   - Go to: `https://github.com/Swap2204/CI_CD_Demo`
+
+2. **Find the Actions tab**
+   - Look at top of the page: Code | Issues | Pull requests | Actions ← Click here
+
+3. **You should see your workflow**
+   - You'll see: **"Node CI"** in yellow (running) or green (passed)
+   - It shows: "ci: add GitHub Actions workflow from scratch" (your commit message)
+
+4. **Click on "Node CI" to open the run**
+   - You see: workflow started, timestamp, which branch (main)
+
+5. **Look at the job**
+   - Left side shows: `test` (the job name from your YAML)
+   - Right side shows steps happening in real-time
+   - Yellow = Running ⏳
+   - Green = Completed ✅
+   - Red = Failed ❌
+
+6. **Watch each step complete (in order)**
+   - Step 1: Checkout repository ✅
+   - Step 2: Setup Node.js ✅
+   - Step 3: Install dependencies ✅
+   - Step 4: Run tests ✅
+
+7. **If all green** → workflow succeeded! 🎉
+
+8. **If any red** → Click the red step to see error logs
+   - Read the error message
+   - Fix your code locally
+   - Commit and push again
+   - Workflow runs automatically again
+
+**What each GitHub Actions UI element means:**
+
+| Element | Meaning |
+|---------|----------|
+| Yellow dot 🟡 | Workflow is currently running |
+| Green checkmark ✅ | Step/Job completed successfully |
+| Red X ❌ | Step/Job failed (click to see error) |
+| Timestamp | When the workflow was triggered |
+| Commit message | The git commit that triggered it |
+| "Run" name | The workflow `name:` from your YAML |
 ## Baby step 8: Practice by changing workflow yourself
 Open `.github/workflows/ci.yml` and change Node version:
 - from `'18'` to `'20'`
